@@ -1,19 +1,34 @@
-class User{
-    name: string = 'Gabriel'
-    age: number = 21
+abstract class Account {
+    name: string
+    accountNumber: number
+    balance: number = 0
 
-    constructor(name: string, age: number){
+    constructor(name: string, accountNumber: number) {
         this.name = name
-        this.age = age
+        this.accountNumber = accountNumber
     }
 
-    showName = () => {
-        console.log(this.name)
+    deposit = () => {
+        console.log('Você depositou')
+    }
+
+    withdraw = () => {
+        console.log('Você sacou')
+    }
+
+        getBalance = () => {
+        console.log(this.balance)
     }
 }
 
-const user = new User('Gabriel', 21)
-user.showName()
+class PeopleAccount extends Account {
+    doc_id: number
 
-const otherUser = new User('João', 20)
-otherUser.showName()
+    constructor(doc_id: number, name: string, accountNumber: number){
+        super(name, accountNumber)
+        this.doc_id = doc_id
+    }
+}
+
+const peopleAccount: PeopleAccount = new PeopleAccount(1, "Gabriel ", 21)
+console.log(peopleAccount)
